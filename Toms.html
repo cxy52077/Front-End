@@ -4,7 +4,31 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Tom's</title>
 	<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+		// Module模式
+		var myTestModule=(function  (my) {
+			my={},privateName="chen";
 
+			function privateAddTopic(data){
+				// innerCode
+				alert(data);
+			}
+
+			my.Name=privateName;
+			my.addTopic=function  (data) {
+				// body...
+				privateAddTopic(data);
+			}
+			return my;
+
+		}(myTestModule||{}))
+		// alert(myTestModule.Name);
+		// myTestModule.addTopic('ee');
+	</script>
 </head>
-<body></body>
+<body>
+	<div id="testDiv">
+		<input type="button" id="btnTest" onclick="myTestModule.addTopic('ee')" value="test"/>
+	</div>
+</body>
 </html>
