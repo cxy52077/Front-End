@@ -5,7 +5,7 @@
 	<title>Tom's</title>
 	<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript">
-		// Module模式
+/*		// Module模式
 		var myTestModule=(function  (my) {
 			my={},privateName="chen";
 
@@ -23,12 +23,39 @@
 
 		}(myTestModule||{}))
 		// alert(myTestModule.Name);
-		// myTestModule.addTopic('ee');
+		// myTestModule.addTopic('ee');*/
+
+		/*立即调用函数表达式*/
+		// var foo=function  () {
+		// 	// body...
+		// }
+		// function a () {
+		// 	// body...
+		// 	alert("test");
+		// }();
+
+		/*原型与原型链*/
+		var Calculator = function (decimalDigits, tax) {
+            this.decimalDigits = decimalDigits;
+            this.tax = tax;
+        };
+        
+		Calculator.prototype = function() {
+			add=function  (x,y) {
+				return x+y;
+			},
+			substract=function  (x,y) {
+				return x-y;
+			}
+		}();
+		alert((new Calculator()).add(5,7));
+		// alert(c.add(5,7));
 	</script>
 </head>
 <body>
 	<div id="testDiv">
-		<input type="button" id="btnTest" onclick="myTestModule.addTopic('ee')" value="test"/>
+		<!-- <input type="button" id="btnTest" onclick="myTestModule.addTopic('ee')" value="test"/> -->
+		<a href="http://www.baidu.com" onclick="event.preventDefault()">百度</a>
 	</div>
 </body>
 </html>
