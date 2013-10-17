@@ -56,31 +56,40 @@
 		// alert(c.add(5,7));
 
 		/*JSON*/
-		var myJson='{"prop":"val"}';
-		var myObj=JSON.parse(myJson);
-		alert(myObj.prop);
-		alert(JSON.stringify(myObj));
+		// var myJson='{"prop":"val"}';
+		// var myObj=JSON.parse(myJson);
+		// alert(myObj.prop);
+		// alert(JSON.stringify(myObj));
 
-		var a = {
-			  x: 10,
-			  calculate: function (z) {
-			    return this.x + this.y + z
-			  }
-			};
+		// var a = {
+		// 	  x: 10,
+		// 	  calculate: function (z) {
+		// 	    return this.x + this.y + z
+		// 	  }
+		// 	};
 			 
-		var b = {
-		  y: 20,
-		  __proto__: a
-		};
+		// var b = {
+		//   y: 20,
+		//   __proto__: a
+		// };
 		 
-		var c = {
-		  y: 30,
-		  __proto__: a
-		};
+		// var c = {
+		//   y: 30,
+		//   __proto__: a
+		// };
 		 
-		// 调用继承过来的方法
-		alert(b.calculate(30)); // 60
-		alert(c.calculate(40)); // 80
+		// // 调用继承过来的方法
+		// alert(b.calculate(30)); // 60
+		// alert(c.calculate(40)); // 80
+
+		/*单例模式*/
+		var mySingleton={
+			property1:"something",
+			property2:"something else",
+			method1:function(){
+				console.log("hello world");
+			}
+		}
 	</script>
 </head>
 <body>
