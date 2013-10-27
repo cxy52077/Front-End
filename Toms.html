@@ -1,102 +1,11 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>Tom's</title>
-	<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript">
-/*		// Module模式
-		var myTestModule=(function  (my) {
-			my={},privateName="chen";
-
-			function privateAddTopic(data){
-				// innerCode
-				alert(data);
-			}
-
-			my.Name=privateName;
-			my.addTopic=function  (data) {
-				// body...
-				privateAddTopic(data);
-			}
-			return my;
-
-		}(myTestModule||{}))
-		// alert(myTestModule.Name);
-		// myTestModule.addTopic('ee');*/
-
-		/*立即调用函数表达式*/
-		// var foo=function  () {
-		// 	// body...
-		// }
-		// function a () {
-		// 	// body...
-		// 	alert("test");
-		// }();
-
-		/*原型与原型链*/
-		// var Calculator = function (decimalDigits, tax) {
-  //           this.decimalDigits = decimalDigits;
-  //           this.tax = tax;
-  //       };  
-
-		// Calculator.prototype = function() {
-		// 	add=function  (x,y) {
-		// 		return x+y;
-		// 	},
-		// 	substract=function  (x,y) {
-		// 		return x-y;
-		// 	}
-		// 	return {
-		// 		add:add,
-		// 		substract:substract;
-		// 	}
-		// }();
-		// alert((new Calculator()).add(5,7));
-		// alert(c.add(5,7));
-
-		/*JSON*/
-		// var myJson='{"prop":"val"}';
-		// var myObj=JSON.parse(myJson);
-		// alert(myObj.prop);
-		// alert(JSON.stringify(myObj));
-
-		// var a = {
-		// 	  x: 10,
-		// 	  calculate: function (z) {
-		// 	    return this.x + this.y + z
-		// 	  }
-		// 	};
-			 
-		// var b = {
-		//   y: 20,
-		//   __proto__: a
-		// };
-		 
-		// var c = {
-		//   y: 30,
-		//   __proto__: a
-		// };
-		 
-		// // 调用继承过来的方法
-		// alert(b.calculate(30)); // 60
-		// alert(c.calculate(40)); // 80
-
-		/*单例模式*/
-		var mySingleton={
-			property1:"something",
-			property2:"something else",
-			method1:function(){
-				console.log("hello world");
-			}
-		}
-	</script>
-</head>
-<body>
-	<div id="testDiv">
-		<!-- <input type="button" id="btnTest" onclick="myTestModule.addTopic('ee')" value="test"/>
-		-->
-		<a href="http://www.baidu.com" onclick="event.preventDefault()">百度</a>
-	</div>
-</body>
+<!doctype html>
+<html ng-app>
+    <head>
+        <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    </head>
+    <body>
+        Your name: <input type="text" ng-model="yourname" placeholder="World">
+        <hr>
+        Hello {{yourname || 'World'}}!
+    </body>
 </html>
