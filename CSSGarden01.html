@@ -2,54 +2,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="stylesheet" type="text/css" href="css/garden01.css">
 	<title></title>
+	<style type="text/css">
+		.label{
+			top: 0px;
+			left: 0px;
+			padding: 0 3px 3px 0;
+			position: absolute;
+			background-color: #b82121;
+			color: #fff;
+		}
+		.simple{
+			width:500px;
+			margin:20px auto;
+			border: 5px solid #b82121 ;
+			background-color: #eee;
+			box-sizing: border-box;
+			position: relative;
+		}
+		.fancy{
+			width: 500px;
+			margin: 20px auto;
+			padding: 50px;
+			border: 5px solid #b82121 ;
+			background-color: #eee;
+			box-sizing: border-box;
+			position: relative;
+		}
+		.static{
+			top:20px;
+			border: 5px solid #b82121 ;
+			background-color: #eee;
+			position:static;
+		}
+		.relative{
+			top:20px;
+			border: 5px solid #b82121 ;
+			background-color: #eee;
+			position: relative;
+		}
+		.elem p{
+			margin-top:1em;
+			padding-top: 1em;
+		}
+		.foot{
+			position: fixed;
+			right: 0px;
+			bottom: 0px;
+		}
+	</style>
 </head>
 <body>
-	<div class="content">
-		<div class="header">
-			<h1>HEADER</h1>
-		</div>
-		<div class="left">
-			<h4>LEFT</h4>
-			<div id="category">
-				<h1>CSS</h1>
-					<h2>CSS入门</h2>
-					<h2>CSS进阶</h2>
-					<h2>CSS高阶技巧</h2>
-				<h1>WebUI</h1>
-					<h2>理论</h2>
-					<h2>实战</h2>
-					<h2>高级</h2>
-				<h1>DOM</h1>
-					<h2>DOM入门</h2>
-					<h2>DOM应用</h2>
-					<h2>DOM与浏览器</h2>
-			</div>
-		</div>
-		<div class="right">
-			<h4>RIGHT</h4>
-			<ul id="nav">
-				<li>
-					<a href="#" id="current">首页</a>
-				</li>
-				<li>
-					<a href="#">第一栏</a>
-				</li>
-				<li>
-					<a href="#">第二栏</a>
-				</li>
-				<li>
-					<a href="#">第三栏</a>
-				</li>
-				<li>
-					<a href="#">第四栏</a>
-				</li>
-			</ul>
-		</div>
-		<!-- Margin叠加问题 -->
-		<div id="a">a</div>
-		<div id="b">b</div>
+<!-- 	<div class="simple"><span class="label">&lt;div class="simple"&gt;</span> First Div</div>
+	<div class="fancy"><span class="label">&lt;div class="fancy"&gt;</span>Second Div</div> -->
+	<div class="static">
+		<!-- <span class="label">&lt;div class="simple"&gt;</span> -->
+		<p>static是默认值。 position: static的元素不会被特殊的定位。</p>
+	</div>
+	<div class="relative elem">
+		<span class="label">&lt;div class="simple"&gt;</span>
+		<p>
+		没有其他特殊属性的时候relative表现和static一致，有这些属性的时候，会有差别。
+		</p>
+	</div>
+	<div class="fancy">
+		<span class="label">&lt;div class="fancy"&gt;</span>
+		Second Div
+	</div>
+	<div class="foot">
+		我是一个FOOT~
 	</div>
 </body>
 </html>

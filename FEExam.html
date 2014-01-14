@@ -1,0 +1,10 @@
+<a id="t1" href="http://www.baidu.com"  target="_blank"  onclick="return fnGo(this);" >Click me</a>
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script>
+function fnGo(o){
+ //这里或许要拼接新的href 
+  // o.href = 'http://www.blueidea.com' ;
+  $("#t1").hide();
+  return true;
+}
+</script>

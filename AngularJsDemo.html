@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script  src="js/angular.min.js"></script>
+	<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<title>AngularJsDemo</title>
+</head>
+<body >
+	Your name:
+		<input type="text" ng-model="yourname" placeHolder="World">
+		<hr>
+		Hello {{yourname||'World'}}!
+		<p>Nothing here {{'yet' + '!'}}</p>
+	<div ng-controller="PhoneListCtrl">
+		
+		<ul>
+			<li ng-repeat="phone in phones">
+				{{phone.name}}
+				<p>{{phone.snippet}}</p>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	function PhoneListCtrl ($scope) {
+		$.scope.phones=[
+			{"name": "Nexus S", "snippet": "Fast just got faster with Nexus S."},
+		    {"name": "Motorola XOOM™ with Wi-Fi", "snippet": "The Next, Next Generation tablet."},
+		    {"name": "MOTOROLA XOOM™", "snippet": "The Next, Next Generation tablet."}
+		]
+	}
+	</script>
+</body>
+</html>

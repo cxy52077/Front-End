@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>JQEX</title>
+    <meta name="description" content="Jquery excrise">
+    <meta name="keywords" content="jj">
+    <link href="" rel="stylesheet">
+    <script type="text/javascript"></script>
+</head>
+<body>
+
+    <script type="text/javascript">
+    // (function(window) {
+    //  function add () {
+    //      // body...
+    //  };
+    //     var tempArr=[],
+    //     coreIndexOf=tempArr.indexOf;
+    //  add.fn={
+    //      test:function  (t) {
+    //          alert("I'm test1:"+t);
+    //      },
+    //      toArray:function () {
+    //          [].slice.call(this);
+    //      },
+    //         indexOf1:function  () {
+    //             coreIndexOf.indexOf
+    //         }
+    //  };
+    //  alert(add.constructor);
+    //  add.fn.test("Just");
+    //  alert(add.fn.toArray("Test Fun"));
+    // })(window);
+    // var o=function  () {
+ //        return new o;
+ //    };
+ //    console.log(o);
+
+    // function Cat (name,color) {
+    //     // body...
+    //     return{
+    //         name:name,
+    //         color:color;
+    //     }
+    // }
+    function Cat (name,color) {
+        this.name=name;
+        this.color=color;
+        this.type="cat class";
+        this.eat=function  () {
+            alert("eat eat");
+        }
+    };
+    var cat1=new Cat("First","Yellow");
+    var cat2=new Cat("Second","Red");
+    // alert(cat1.type);
+
+    console.log(cat1);
+    console.log(cat2);
+    function A(x,y) 
+{ 
+    this.x = x; 
+    this.y = y; 
+    this.FunX = function(){alert(x)}; 
+    A.prototype.FunY = function(){alert(y)}; 
+} 
+var obj = new A(5,10); 
+alert(obj.x); 
+alert(obj.y); 
+console.log(A);
+console.log(obj);
+obj.FunX(); 
+obj.FunY();
+// function A(x) 
+// { 
+//     A.prototype.x = x; 
+//     A.prototype.ShowA = function(){ alert("A的Show方法!"); };
+// } 
+
+// function B(x,y)
+// {
+//     B.prototype.y = y;
+//     A.call(this,x);
+//     B.prototype.ShowB = function(){ alert("B的Show方法!"); };
+// }
+
+// B.prototype = new A();
+// B.prototype.constructor = B;
+
+// var obj = new B(10,5);
+// alert(obj.x);
+// alert(obj.y);
+// obj.ShowA();
+// obj.ShowB();
+    </script>
+</body>
+</html>
