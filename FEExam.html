@@ -1,10 +1,67 @@
-<a id="t1" href="http://www.baidu.com"  target="_blank"  onclick="return fnGo(this);" >Click me</a>
-<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
-<script>
-function fnGo(o){
- //这里或许要拼接新的href 
-  // o.href = 'http://www.blueidea.com' ;
-  $("#t1").hide();
-  return true;
-}
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JQEX</title>
+	<meta name="description" content="Jquery excrise">
+	<meta name="keywords" content="jj">
+	<link href="" rel="stylesheet">
+
+</head>
+<body>
+
+	<form id="form1"></form>
+	<form id="form2"></form>
+	<input type="button" onclick="g()" value="test"/>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+		function g () {
+			f('hello');
+		};
+		function f (s) {
+			var a=4,b=4,c;
+			c=s;
+			// d.trim(); 自动异常断点
+			alert(s+' 517!');
+		}
+
+		ConClass=function  (settings) {
+			var config=this.config;
+			this.config=$.extend({},config,settings)
+			/*this.name=settings.name;
+			this.age=settings.age;*/
+			this.show();
+		};
+		ConClass.pt=ConClass.prototype;
+
+		ConClass.pt.show=function  () {
+			return this.config.name;
+		};
+		ConClass.pt.config={
+			name:"cxy",
+			age:25,
+			sex:"female"
+		};
+
+		var info={
+			name:"cxb",
+			age:32,
+			sex:"male"
+		}
+		var c=new ConClass(info);
+		console.log(c.show());
+		console.log(c);
+		var t="tt     tttt        ";
+		alert(t.trim()+"3");
+		/*var d;
+		console.log(d&&c);
+		console.log(d||c);*/
+/*		var js= $('script'),
+		jsPath=js[js.length-2].src;
+		console.log(jsPath.substring(0,jsPath.lastIndexOf("/")+1));*/
+		var body= $('body');
+		body.append("<h1>test</h1>");
+	</script>
+</body>
+</html>

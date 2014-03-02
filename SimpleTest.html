@@ -6,7 +6,20 @@
 </head>
 <body>
 	<hr/>
-
+	<table id="staffInfo">
+		<tr>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>性别</th>
+			<th>操作</th>
+		</tr>
+		<tr>
+			<td>TOM</td>
+			<td>25</td>
+			<td>femal</td>
+			<td><input type="button" value="修改" onclick="modifyRow();"></td>
+		</tr>
+	</table>
 	<script type="text/javascript">
 	// 基本构造器
 	// function Car (model,year,miles) {
@@ -24,24 +37,34 @@
 	// console.log(mondeo.toString());
 
 	// Module模式
-	var testModule=(function  () {
-		// body...
-		var counter=0;
+	// var testModule=(function  () {
+	// 	// body...
+	// 	var counter=0;
 
-		return{
-			incrementCounter:function(){
-				return ++counter;
-			},
-			resetCounter:function  () {
-				console.log("counter value prior to reset: "+counter);
-				counter=0;
-			}
-		}
-	})();
-	testModule.incrementCounter();
-	testModule.incrementCounter();
-	testModule.incrementCounter();
-	testModule.resetCounter();
+	// 	return{
+	// 		incrementCounter:function(){
+	// 			return ++counter;
+	// 		},
+	// 		resetCounter:function  () {
+	// 			console.log("counter value prior to reset: "+counter);
+	// 			counter=0;
+	// 		}
+	// 	}
+	// })();
+	// testModule.incrementCounter();
+	// testModule.incrementCounter();
+	// testModule.incrementCounter();
+	// testModule.resetCounter();
+	/*var c=~~3.14;
+	console.log(c);
+	function modifyRow(){
+		var o=event.srcElement;
+		var i = o.parentNode.parentNode.rowIndex; 
+		var r= document.getElementById("staffInfo").rows[i];
+		var c1= r.cells[0];
+		c1.removeChild(c1.childNodes[0]);
+		console.log(c1);
+	};*/
 </script>
 </body>
 </html>

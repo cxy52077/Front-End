@@ -7,7 +7,7 @@
     <meta name="description" content="Jquery excrise">
     <meta name="keywords" content="jj">
     <link href="" rel="stylesheet">
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 </head>
 <body>
 
@@ -45,55 +45,163 @@
     //         color:color;
     //     }
     // }
-    function Cat (name,color) {
-        this.name=name;
-        this.color=color;
-        this.type="cat class";
-        this.eat=function  () {
-            alert("eat eat");
-        }
+
+    // 构造函数
+    // var a=new Number(11);
+    // var b=Number(11);
+    // console.log(a);
+    // console.log(b);
+
+    // var CaClass=function CaClass (name) {
+    //     this.name=name;
+    //     this.age=12;
+    // };
+    // CaClass.prototype={
+    //     add:function add () {
+    //         alert(this.name);
+    //     },
+    //     sub:function  () {
+    //         alert("I'm sub");
+    //     }
+    // };
+    // var c=new CaClass("cxy");
+    // // c.add();
+    // console.log(c);
+    // function Cat (name,color) {
+    //     this.name=name;
+    //     this.color=color;
+    //     this.type="cat class";
+    //     this.eat=function  () {
+    //         alert("eat eat");
+    //     }
+    // };
+    // var cat1=new Cat("First","Yellow");
+    // var cat2=new Cat("Second","Red");
+    // // alert(cat1.type);
+
+    // console.log(cat1.constructor);
+    // console.log(cat2);
+    // function A(x,y) 
+    // { 
+    //     this.x = x; 
+    //     this.y = y; 
+    //     this.FunX = function(){alert(x)}; 
+    //     A.prototype.FunY = function(){alert(y)}; 
+    // } 
+    // var obj = new A(5,10); 
+    // alert(obj.x); 
+    // alert(obj.y); 
+    // console.log(A);
+    // console.log(obj);
+    // obj.FunX(); 
+    // obj.FunY();
+
+    // 原型链 I--TOM
+    // function Foo() {
+    // this.value = 42;
+    // }
+    // Foo.prototype = {
+    //     method: function() {}
+    // };
+
+    // function Bar() {}
+
+    // // 设置Bar的prototype属性为Foo的实例对象
+    // Bar.prototype = new Foo();
+    // Bar.prototype.foo = 'Hello World';
+
+    // // 修正Bar.prototype.constructor为Bar本身
+    // Bar.prototype.constructor = Bar;
+
+    // var test = new Bar() // 创建Bar的一个新实例
+    // console.log(test);
+
+    // 原型链 II--TOM
+    // function foo() {
+    //         this.add = function (x, y) {
+    //             return x + y;
+    //         }
+    //     }
+
+    //     foo.prototype.add = function (x, y) {
+    //         return x + y + 10;
+    //     }
+
+    //     Object.prototype.subtract = function (x, y) {
+    //         return x - y;
+    //     }
+
+    // var f = new foo();
+    // alert(f.add(1, 2)); //结果是3，而不是13
+    // alert(f.subtract(1, 2)); //结果是-1
+    // console.log(f);
+    // for (var i in f) {
+    //     if(f.hasOwnProperty(i))
+    //     {
+    //         console.log(i);
+    //     }
+    // };
+
+    // 一峰 继承
+//     function Animal(){
+// 　　　　this.species = "动物";
+// 　　};
+//     function Cat(name,color){
+//         this.name=name;
+//         this.color=color;
+//         // Animal.apply(this,arguments);
+//     }
+//     Cat.prototype = new Animal();
+//     Cat.prototype.constructor=Cat;
+
+//     Cat.prototype=Animal.prototype;
+//     // Cat.prototype.constructor=Cat;
+
+//     var cat1=new Cat("1","2");
+//     console.log(cat1); 
+//     alert(cat1.species);
+//     // console.log(Cat);
+
+//     // alert(Animal.prototype.isPrototypeOf(cat1));
+
+    // YUI源代码继承
+//     function Animal(){};
+//     Animal.prototype.species="动物";
+
+//     function Cat(name,color){
+//         this.name=name;
+//         this.color=color;
+//     }
+
+//     function extend (Child,Parent) {
+//         var F=function() {};
+//         F.prototype = Parent.prototype;
+//         Child.prototype=new F();
+//         Child.prototype.constructor=Child;
+//         Child.uber=Parent.prototype;
+//     };
+//     extend(Cat,Animal);
+// 　　var cat1 = new Cat("大毛","黄色");
+//     console.log(cat1);
+// 　　alert(cat1.species); // 动物
+
+    // 非构造函数继承 浅拷贝
+    var Chinese = {
+　　　　nation:'中国'
+　　}, Doctor ={
+　　　　career:'医生'
+　　};
+    function extendCopy(p){
+        var c={};
+        for(var i in p){
+            c[i]=p[i];
+        };
+        c.uber=p;
+        return c;
     };
-    var cat1=new Cat("First","Yellow");
-    var cat2=new Cat("Second","Red");
-    // alert(cat1.type);
-
-    console.log(cat1);
-    console.log(cat2);
-    function A(x,y) 
-{ 
-    this.x = x; 
-    this.y = y; 
-    this.FunX = function(){alert(x)}; 
-    A.prototype.FunY = function(){alert(y)}; 
-} 
-var obj = new A(5,10); 
-alert(obj.x); 
-alert(obj.y); 
-console.log(A);
-console.log(obj);
-obj.FunX(); 
-obj.FunY();
-// function A(x) 
-// { 
-//     A.prototype.x = x; 
-//     A.prototype.ShowA = function(){ alert("A的Show方法!"); };
-// } 
-
-// function B(x,y)
-// {
-//     B.prototype.y = y;
-//     A.call(this,x);
-//     B.prototype.ShowB = function(){ alert("B的Show方法!"); };
-// }
-
-// B.prototype = new A();
-// B.prototype.constructor = B;
-
-// var obj = new B(10,5);
-// alert(obj.x);
-// alert(obj.y);
-// obj.ShowA();
-// obj.ShowB();
+    var Doctor = extendCopy(Chinese);
+　　Doctor.career = '医生';
+　　alert(Doctor.nation); // 中国
     </script>
 </body>
 </html>
