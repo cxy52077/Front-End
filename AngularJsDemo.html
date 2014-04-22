@@ -75,13 +75,15 @@
 	    <hr>
 	    <h1>{{previewtitle}}</h1>
 	    <b>[{{question.type|typeFilter}}]{{question.name}}</b>({{question.fraction}}分)<!-- [{{nowDate|date:'yyyy-MM-dd HH:mm:ss'}}] -->
+	    <br/>
+	    <input type="checkbox" name="optchk" ng-model="ChoseR" ng-true-value="1" ng-false-value="0"/>测试复选
 	    <ul>
 	    	<li ng-repeat="o in question.options">
 	    		<b>{{$index+1}}</b>
 	    		<input type="radio" name="optrad" ng-show="question.type==1"/>
 	    		<input type="checkbox" name="optchk" ng-show="question.type==2"/>
 	    		{{o.content}}
-	    		<a href="javascript:" ng-click="delOption($index)">删除</a>
+	    		<a href="javascript:" ng-class="{color:red}" ng-click="delOption($index)">删除</a>
 	    	</li>
 	    </ul>
 	</div>
@@ -97,6 +99,7 @@ var questionModel={
 };
 app.controller("testC",function($scope){
 	$scope.question=questionModel;
+	$scope.ChoseR=1;
 	$scope.addOption=function () {
 		var o={content:""};
 		$scope.question.options.push(o);
