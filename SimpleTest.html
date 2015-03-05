@@ -26,14 +26,15 @@
 <input type="checkbox" name="chkRaide" checked="checked">骑车</input>
 <input type="checkbox" name="chkSing" checked="checked">唱歌</input>
 <input name="chkDJY" type="checkbox">打酱油</input>
-</br>
+<br/>
 职业：
 <select name="selPosition">
 <option value="programer">程序员</option>
 <option value="dba">DBA</option>
 </select>
-</br>
-<input type="button" id="btnSubmit" onclick="submitFun();" value="提交"></input>
+<br/>
+<input type="submit" id="btnSubmit"  value="提交"/>
+<!-- onclick="submitFun();" -->
 <!-- <a href="JQEx.html">JQEx</a>
 -->
 </form>
@@ -43,25 +44,31 @@
 <script type="text/javascript">
 
         (function(window){
-            window.getParamObj=function  () {
-                 var args=new Object();   
-                     var query=location.hash.substring(1);//获取查询串   
-                     var pairs=query.split("&");//在逗号处断开   
-                     for(var i=0;i<pairs.length; i++)   
-                     {   
-                         var pos=pairs[i].indexOf('=');//查找name=value   
-                            if(pos==-1)   continue;//如果没有找到就跳过   
-                             var argname=pairs[i].substring(0,pos);//提取name   
-                            var value=pairs[i].substring(pos+1);//提取value   
-                            args[argname]=unescape(value);//存为属性   
-                    }
-                     return args;
-                };
-            window.submitFun=function  () {
-                var i=$("#testForm").serialize();
-                location.hash = "#" + i;
-                window.location.href="JQEx.html";
-            };
+            // window.getParamObj=function  () {
+            //      var args=new Object();   
+            //          var query=location.hash.substring(1);//获取查询串   
+            //          var pairs=query.split("&");//在逗号处断开   
+            //          for(var i=0;i<pairs.length; i++)   
+            //          {   
+            //              var pos=pairs[i].indexOf('=');//查找name=value   
+            //                 if(pos==-1)   continue;//如果没有找到就跳过   
+            //                  var argname=pairs[i].substring(0,pos);//提取name   
+            //                 var value=pairs[i].substring(pos+1);//提取value   
+            //                 args[argname]=unescape(value);//存为属性   
+            //         }
+            //          return args;
+            //     };
+            // window.submitFun=function  () {
+            //     var i=$("#testForm").serialize();
+            //     location.hash = "#" + i;
+            //     window.location.href="JQEx.html";
+            // };
+            // document.getElementById("testForm").addEventListener("submit", function(e) {
+            //     e.preventDefault();
+            //     alert("key.code");
+            //     // ... Do processing here.  Yay for "enter" key submission!
+            //     return false;
+            // });
         })(window);
  
         var processHash = function () {
@@ -74,11 +81,16 @@
         };
  
         $(function () {
- 
+             document.getElementById("testForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+                alert("key.code");
+                // ... Do processing here.  Yay for "enter" key submission!
+                return false;
+            });
 
-            window.onload = processHash;
+            // window.onload = processHash;
  
-            window.onhashchange = processHash;
+            // window.onhashchange = processHash;
  
         });
  

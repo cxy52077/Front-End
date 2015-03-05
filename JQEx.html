@@ -10,7 +10,31 @@
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 </head>
 <body>
-    <a href="javascript:window.history.go(-1)">返回</a>
+    <!--     <a href="javascript:window.history.go(-1)">返回</a>
 <A HREF="javascript:document.location='http://www.google.com/'">XSS</A>
+-->
+<script type="text/javascript">
+/*$.ajax({
+    url:"http://172.17.41.124:1486/api/GetMenuData/    ",
+    type:"get",
+    success:function  (data) {
+        alert(data);
+    }
+})*/
+    // document.write('<iframe src=http://www.baidu.com style=display:none></iframe>');
+    window.snow=(function  () {
+        function Snow (els) {
+        }
+        var sonwme={
+            var els;
+            get:function  (seletor) {
+                if(seletor==="string")
+                {
+                    els=document.querySelectorAll(seletor);
+                }
+            }
+        }
+    }());
+</script>
 </body>
 </html>
