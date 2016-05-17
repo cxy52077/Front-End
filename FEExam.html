@@ -1,66 +1,375 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>JQEX</title>
-	<meta name="description" content="Jquery excrise">
-	<meta name="keywords" content="jj">
-	<link href="" rel="stylesheet">
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>closures</title>
+    <meta name="description" content="Jquery excrise">
+    <meta name="keywords" content="jj">
+    <link href="" rel="stylesheet">
 </head>
+
 <body>
-	<form id="form1"></form>
-	<form id="form2"></form>
-	<input type="button" onclick="g()" value="test"/>
+    <form id="form1"></form>
+    <form id="form2"></form>
+    <input type="button" onclick="g()" value="test" />
+    <button id="excute">点击我执行命令</button>
+    <button id="undo">点击我执行命令</button>
     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript">
-		function g () {
-			f('hello');
-		};
-		function f (s) {
-			var a=4,b=4,c;
-			c=s;
-			// d.trim(); 自动异常断点
-			alert(s+' 517!');
-		}
+    <script type="text/javascript">
+    function g() {
+        f('hello');
+    };
 
-		ConClass=function  (settings) {
-			var config=this.config;
-			this.config=$.extend({},config,settings)
-			/*this.name=settings.name;
-			this.age=settings.age;*/
-			this.show();
-		};
-		ConClass.pt=ConClass.prototype;
+    function f(s) {
+        var a = 4,
+            b = 4,
+            c;
+        c = s;
+        // d.trim(); 自动异常断点
+        alert(s + ' 517!');
+    }
 
-		ConClass.pt.show=function  () {
-			return this.config.name;
-		};
-		ConClass.pt.config={
-			name:"cxy",
-			age:25,
-			sex:"female"
-		};
+    ConClass = function(settings) {
+        var config = this.config;
+        this.config = $.extend({}, config, settings)
+            /*this.name=settings.name;
+            this.age=settings.age;*/
+        this.show();
+    };
+    ConClass.pt = ConClass.prototype;
 
-		var info={
-			name:"cxb",
-			age:32,
-			sex:"male"
-		}
-		var c=new ConClass(info);
-		console.log(c.show());
-		console.log(c);
-		var t="tt     tttt        ";
-		alert(t.trim()+"3");
-		/*var d;
-		console.log(d&&c);
-		console.log(d||c);*/
-/*		var js= $('script'),
-		jsPath=js[js.length-2].src;
-		console.log(jsPath.substring(0,jsPath.lastIndexOf("/")+1));*/
-		var body= $('body');
-		body.append("<h1>test</h1>");
-	</script>
+    ConClass.pt.show = function() {
+        return this.config.name;
+    };
+    ConClass.pt.config = {
+        name: "cxy",
+        age: 25,
+        sex: "female"
+    };
+
+    var info = {
+        name: "cxb",
+        age: 32,
+        sex: "male"
+    }
+    var c = new ConClass(info);
+    console.log(c.show());
+    console.log(c);
+    // var t = "tt     tttt        ";
+    // alert(t.trim() + "3");
+    /*var d;
+    console.log(d&&c);
+    console.log(d||c);*/
+    /*		var js= $('script'),
+    		jsPath=js[js.length-2].src;
+    		console.log(jsPath.substring(0,jsPath.lastIndexOf("/")+1));*/
+    var body = $('body');
+    body.append("<h1></h1>");
+    </script>
+    <script type="text/javascript">
+    /*闭包3.1.5*/
+    var Tv = {
+        open: function() {
+            console.log('打开电视机');
+        },
+        close: function() {
+            console.log('关上电视机');
+        }
+    }
+    var OpenTvCommand = function(receiver) {
+        this.receiver = receiver;
+    }
+
+    OpenTvCommand.prototype.excute = function() {
+        this.receiver.open();
+    }
+
+    OpenTvCommand.prototype.undo = function() {
+        this.receiver.close();
+    }
+
+    var setCommand = function(command) {
+        document.getElementById('excute').onclick = function() {
+            command.excute();
+        }
+        document.getElementById('undo').onclick = function() {
+            command.undo();
+        }
+    }
+    setCommand(new OpenTvCommand(Tv));
+
+    /*3.2.2 函数作为返回值*/
+    var Type = {};
+
+    var typeArr = ["Object", "Number", "String", "Array"];
+    var type;
+    for (var i = 0; i < typeArr.length; i++) {
+        type = typeArr[i];
+        /*非闭包式写法，函数为闭包中的匿名函数而非闭包对象，即享用同一内存空间，回调执行时，内存变量为最后一次赋值变量*/
+        /* Type["is" + type] = function(object) {
+                 return Object.prototype.toString.call(object) === "[object " + type + "]";
+             }*/
+
+
+        /*匿名函数即为闭包 入参type变量会保存在闭包的内存空间中，如果没有入参，这里的结果与上面将一致*/
+        (function(type) {
+            Type["is" + type] = function(object) {
+                // return object.toString() === "[object " + type + "]";
+                return Object.prototype.toString.call(object) === "[object " + type + "]";
+            }
+        })(type);
+    }
+
+    console.log(Type.isArray([]));
+    console.log(Type.isObject({}));
+    console.log(Type.isNumber(1));
+    console.log(Type.isNumber("123"));
+    console.log(Type.isString("123"));
+
+    /* 闭包深入 阮一峰*/
+    var name = "The Window";　　
+    var object = {　　　　
+        name: "My Object",
+        getNameFunc: function() {
+            return function() {
+                return this.name;　　　　　　
+            };
+        },
+        getNameAttr: name
+    };
+    console.log(object.getNameFunc()());
+    console.log(object.name);
+
+    var name1 = "The Window";　　
+    var object1 = {　　　　
+        name: "My Object",
+        getNameFunc: function() {
+            var that = this;
+            return function() {　　　　　　　　
+                return that.name;　　　　　　
+            };　　　　
+        }
+    };　　
+    console.log(object1.getNameFunc()());
+
+    /*闭包-外例*/
+    function makeAdder(x) {
+        return function(y) {
+            return x + y;
+        };
+    }
+
+    /*创建环境不一样，得到的结果不一样*/
+    var add5 = makeAdder(5);
+    // add5 = makeAdder(3);
+
+    var add10 = makeAdder(10);
+
+    console.log(add5(2)); // 7
+    console.log(add10(2)); // 12
+    console.log(add5(2)); // 7
+
+
+    /* 
+    In this example, we have defined a function makeAdder(x) which takes a single argument x and returns a new function. The function it returns takes a single argument y, and returns the sum of x and y 
+    In essence, makeAdder is a function factory — it creates functions which can add a specific value to their argument. In the above example we use our function factory to create two new functions — one that adds 5 to its argument, and one that adds 10.
+    add5 and add10 are both closures. They share the same function body definition, but store different environments. In add5's environment, x is 5. As far as add10 is concerned, x is 10.
+    */
+
+
+    /*总结：闭包关键在于变量的生存周期，这个周期放在函数中，是在函数定义的位置而不是运行时的上下文*/
+
+    var getSingle = function(fn) {
+        var ret;
+        return function() {
+            return ret || (ret = fn.apply(this, arguments));
+        }
+    }
+
+    var getScript = getSingle(function() {
+        return document.createElement("script");
+    })
+
+
+    var script1 = getScript();
+    var script2 = getScript();
+    // alert(script1 == script2);
+
+    /*关于call*/
+    var animals = [{
+        species: 'Lion',
+        name: 'King'
+    }, {
+        species: 'Whale',
+        name: 'Fail'
+    }];
+
+    for (var i = 0; i < animals.length; i++) {
+        (function(i) {
+            this.print = function() {
+                console.log('#' + i + ' ' + this.species + ': ' + this.name);
+            }
+            this.print();
+        }).call(animals[i], i);
+    }
+
+    /*3.2.3高阶函数实现AOP*/
+    /*这里关于this补充一句：this 的绑定只受最靠近的成员引用的影响 this的指向只与执行上下文相关
+     */
+    Function.prototype.before = function(beforefn) {
+        var _self = this; // 包含了原函数的引用
+
+        // 返回包含了原函数和新函数的"代理函数"
+        return function() {
+            // 执行新函数，修正this
+            beforefn.apply(this, arguments);
+            // 执行原函数
+            return _self.apply(this, arguments);
+        }
+    }
+
+    Function.prototype.after = function(afterfn) {
+        var _self = this;
+        return function() {
+            var ret = _self.apply(this, arguments);
+            afterfn.apply(this, arguments);
+            return ret;
+        }
+    }
+
+    var func = function() {
+        console.log(2);
+    }
+
+    func = func.before(function() {
+        console.log(1);
+    }).after(function() {
+        console.log(3);
+    });
+
+    func();
+
+    /*关于this多举一例尤其在apply中，感觉有点模糊(来源:https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)*/
+    function add(c, d) {
+        return this.a + this.b + c + d;
+    }
+
+    var o = {
+        a: 1,
+        b: 2
+    };
+
+    console.log(add.apply(o, [10, 20]));
+    console.log(add.call(o, 10, 20));
+
+    /*3.2.4 高阶函数的其他应用*/
+    /*currying--柯里化(不立即求值)举例*/
+    /*未柯里化之前*/
+    var cost = (function() {
+        var args = [];
+        return function() {
+            if (arguments.length === 0) {
+                var money = 0;
+                for (var i = 0; i < args.length; i++) {
+                    money += args[i];
+                }
+                return money;
+            } else {
+                [].push.apply(args, arguments);
+            }
+        }
+    })();
+    cost(100);
+    cost(200);
+    cost(300);
+    console.log(cost()); // 600
+
+    /*柯里化之后*/
+    var currying = function(fn) {
+        var args = [];
+        return function() {
+            if (0 === arguments.length) {
+                return fn.apply(this, args);
+            } else {
+                [].push.apply(args, arguments);
+                // 加上这一句,则调用时可以像cost1(100)(200)这般
+                return arguments.callee;
+            }
+        }
+    }
+
+    var cost = (function() {
+        var money = 0;
+        return function() {
+            for (var i = 0; i < arguments.length; i++) {
+                money += arguments[i];
+            }
+            return money;
+        }
+    })();
+
+    var cost1 = currying(cost);
+    cost1(100);
+    cost1(200);
+
+    console.log(cost1());
+
+    /*uncurrying*/
+    Function.prototype.uncurrying = function() {
+        // 结合后面的调用,这里的self是push方法
+        var self = this;
+        return function() {
+            // 此时的obj执行时应该是[1,2,3],arguments执行后为4,应该arguments执行前是([1,2,3],4)
+            var obj = Array.prototype.shift.call(arguments);
+            return self.apply(obj, arguments);
+        }
+    }
+
+    var push = Array.prototype.push.uncurrying();
+    (function() {
+        // 这里的arguments是数组还是参数列表?数组
+        push(arguments, 4);
+        console.log(arguments)
+    })(1, 2, 3);
+    /*push 不再局限于array了*/
+
+    /*函数节流*/
+    var throttle = function(fn, intervarl) {
+        var _self = fn,
+            timer,
+            firstTime = true;
+
+        return function() {
+            var args = arguments,
+                _me = this;
+
+            if (firstTime) {
+                _self.apply(_me, args);
+                return firstTime = false;
+            }
+
+            if (timer) {
+                return false;
+            }
+
+            timer = setTimeout(function() {
+                clearTimeout(timer);
+                _self.apply(_me, args);
+                timer = null;
+            }, intervarl || 500);
+        }
+    }
+
+    window.onresize = throttle(function() {
+        console.log(1);
+    }, 3000);
+
+    // window.onresize = function () {
+    // 	console.log(1);
+    // }
+    </script>
 </body>
+
 </html>

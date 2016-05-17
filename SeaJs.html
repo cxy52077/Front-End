@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Hello SeaJs</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+</head>
+
+<body>
+    <h1 id="testH1">Sea</h1>
+    <input type="text" id="inputBlur" onblur="console.log('test')">
+    <input type="button" id="btntest" value="testBlur" onclick="$('#inputBlur').blur();">
+    <div id="app1">
+        <p>{{ message }}</p>
+        <input v-model="message">
+        <button v-on:click="changeText">changeText</button>
+    </div>
+    <script type="text/javascript" src="js/sea.js"></script>
+    <script type="text/javascript">
+    seajs.config({
+        base: "./js/",
+        alias: {
+            "jquery": "jquery-1.7.1.min.js",
+            "underscore": "Underscore.js",
+            "vue": "vue.js"
+        },
+        preload: ["vue","jquery"]
+    });
+
+    seajs.use(['./js/Underscore.js']);
+    seajs.use("seajs.js");
+    </script>
+</body>
+
+</html>
